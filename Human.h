@@ -4,12 +4,14 @@
 #define HUMAN_H
 
 class Human: public Player{
+ private:
+  std::string name;
+  std::string move;
  public:
   Human();
   Human(std::string _name);
-  std::string name;
-  char move;
+  
   std::string getName();
-  char makeMove();
+  Move * makeMove();
 };
 #endif
