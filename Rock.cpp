@@ -1,12 +1,7 @@
-#ifndef ROCK
-#define ROCK
-#include "Move.h"
+#include "Rock.h"
 
-class Rock: public Move {
- private:
-  std::string name = "Rock";
- public:
-  
+Rock::Rock(){ name = "Rock"; winsAgainst.push_back("Scissors"); }
 
-};
-#endif
+std::string Rock::getName(){ return name; }
+
+std::vector<std::string> Rock::getWins(){ return winsAgainst; }
