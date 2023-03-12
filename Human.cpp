@@ -1,17 +1,16 @@
 #include "Human.h"
-#include "Paper.h"
+#include "Move.h"
+#include "constructMove.h"
 
-Human::Human() { name = "Human"; }
+Human::Human() { name = "Human";}
 Human::Human(std::string _name) { name = _name; }
 
 Move * Human::makeMove(){
-  Move * move;
+  constructMove moves;
   std::string userInput;
   std::cout << "Enter move: ";
   std::cin >> userInput;
-  move = new Paper();
-
-  return move;
+  return moves.getMove(moves.moveID(userInput));
 }
 
 std::string Human::getName() { return name; }

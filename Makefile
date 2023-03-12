@@ -1,0 +1,2 @@
+all: Rock.cpp Paper.cpp Scissors.cpp Monkey.cpp Robot.cpp Pirate.cpp Ninja.cpp Zombie.cpp main.cpp Computer.cpp Human.cpp Referee.cpp constructMove.cpp
+	g++ -Wall Rock.cpp Paper.cpp Scissors.cpp Monkey.cpp Robot.cpp Pirate.cpp Ninja.cpp Zombie.cpp main.cpp Computer.cpp Human.cpp Referee.cpp constructMove.cpp -o all
