@@ -1,7 +1,8 @@
 #include "ConstructMoves.h"
 
-ConstructMoves::ConstructMoves(){
-    // construct every move and add them to a vector
+ConstructMoves::ConstructMoves(){ // construct every move and add them to a vector
+    // moves can be made by copying any of the current moves' .cpp and .h
+    // replacing the name and modifying the winsAgainst string vector
 
     Move * rock = new Rock();
     moves.push_back(rock);
@@ -28,8 +29,7 @@ ConstructMoves::ConstructMoves(){
     moves.push_back(zombie);
 }
 
-Move * ConstructMoves::getMove(std::string userInput){
-    // compares the name of each move to the user's input, returning it's element id
+Move * ConstructMoves::getMove(std::string userInput){ // returns a move by comparing each moves' name to the user's input
     for (int i = 0; i < moves.size(); i++){
         if (userInput == moves.at(i)->getName()){
             return moves.at(i);

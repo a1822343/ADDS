@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+// all moves will use these two functions
 class Move {
  public:
   virtual std::string getName() = 0;
