@@ -12,8 +12,7 @@ int main(void){
     // loop over using .getName compare to cin and return the move at [i]
     // in the move vector
     Player* winner = ref.refGame(human, computer);
-    std::cout << winner->getName() << " Wins\n";
+    std::cout << winner->getName() << " Wins" << std::endl;
 
-    delete winner;
     return 0;
 }

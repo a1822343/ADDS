@@ -32,15 +32,8 @@ Move * ConstructMoves::getMove(std::string userInput){
     // compares the name of each move to the user's input, returning it's element id
     for (int i = 0; i < possibleMoves.size(); i++){
         if (userInput == possibleMoves.at(i)->getName()){
-            std::cout << possibleMoves.at(i)->getName() << std::endl;
             return possibleMoves.at(i);
         }
     }
     return nullptr;
-}
-
-ConstructMoves::~ConstructMoves(){
-    for (size_t i = 0; i < possibleMoves.size(); i++){
-        delete possibleMoves.at(i);
-    }
 }

@@ -18,7 +18,6 @@ class ConstructMoves {
  public:
   ConstructMoves();
   Move * getMove(std::string userInput);
-  ~ConstructMoves();
 };
 
 #endif
