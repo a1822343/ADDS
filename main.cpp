@@ -13,5 +13,7 @@ int main(void){
     // in the move vector
     Player* winner = ref.refGame(human, computer);
     std::cout << winner->getName() << " Wins\n";
+
+    delete winner;
     return 0;
 }

@@ -1,9 +1,9 @@
-#include "Player.h"
-
 #ifndef HUMAN_H
 #define HUMAN_H
 
-class Human: public Player{
+#include "Player.h"
+
+class Human: public Player {
  private:
   std::string name;
   std::string move;
@@ -12,6 +12,6 @@ class Human: public Player{
   Human(std::string _name);
   
   std::string getName();
-  Move * makeMove();
+  Move * makeMove(ConstructMoves * _moves);
 };
 #endif

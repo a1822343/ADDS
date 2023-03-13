@@ -1,5 +1,5 @@
-#ifndef CONSTRUCTMOVE_H
-#define CONSTRUCTMOVE_H
+#ifndef CONSTRUCTMOVES_H
+#define CONSTRUCTMOVES_H
 
 #include <iostream>
 #include "Move.h"
@@ -12,12 +12,13 @@
 #include "Ninja.h"
 #include "Zombie.h"
 
-class constructMove {
- public:
-  constructMove();
+class ConstructMoves {
+ private:
   std::vector<Move*> possibleMoves;
-  int moveID(std::string userInput);
-  Move * getMove(int _moveID);
+ public:
+  ConstructMoves();
+  Move * getMove(std::string userInput);
+  ~ConstructMoves();
 };
 
 #endif
