@@ -4,35 +4,35 @@ ConstructMoves::ConstructMoves(){
     // construct every move and add them to a vector
 
     Move * rock = new Rock();
-    possibleMoves.push_back(rock);
+    moves.push_back(rock);
 
     Move * paper = new Paper();
-    possibleMoves.push_back(paper);
+    moves.push_back(paper);
 
     Move * scissors = new Scissors();
-    possibleMoves.push_back(scissors);
+    moves.push_back(scissors);
 
     Move * monkey = new Monkey();
-    possibleMoves.push_back(monkey);
+    moves.push_back(monkey);
 
     Move * robot = new Robot();
-    possibleMoves.push_back(robot);
+    moves.push_back(robot);
 
     Move * pirate = new Pirate();
-    possibleMoves.push_back(pirate);
+    moves.push_back(pirate);
 
     Move * ninja = new Ninja();
-    possibleMoves.push_back(ninja);
+    moves.push_back(ninja);
 
     Move * zombie = new Zombie();
-    possibleMoves.push_back(zombie);
+    moves.push_back(zombie);
 }
 
 Move * ConstructMoves::getMove(std::string userInput){
     // compares the name of each move to the user's input, returning it's element id
-    for (int i = 0; i < possibleMoves.size(); i++){
-        if (userInput == possibleMoves.at(i)->getName()){
-            return possibleMoves.at(i);
+    for (int i = 0; i < moves.size(); i++){
+        if (userInput == moves.at(i)->getName()){
+            return moves.at(i);
         }
     }
     return nullptr;

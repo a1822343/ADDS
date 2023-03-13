@@ -14,7 +14,7 @@
 
 class ConstructMoves {
  private:
-  std::vector<Move*> possibleMoves;
+  std::vector<Move*> moves;
  public:
   ConstructMoves();
   Move * getMove(std::string userInput);

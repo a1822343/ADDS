@@ -12,6 +12,6 @@ class Human: public Player {
   Human(std::string _name);
   
   std::string getName();
-  Move * makeMove(ConstructMoves * _moves);
+  Move * makeMove();
 };
 #endif

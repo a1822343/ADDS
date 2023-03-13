@@ -2,6 +2,7 @@
 
 std::string Computer::getName() { return "Computer"; }
 
-Move * Computer::makeMove(ConstructMoves * _moves) {
-    return _moves->getMove("Rock");
+Move * Computer::makeMove() {
+    Move * move = new Rock();
+    return move;
 }

@@ -3,7 +3,8 @@
 Human::Human() { name = "Human";}
 Human::Human(std::string _name) { name = _name; }
 
-Move * Human::makeMove(ConstructMoves * _moves){
+Move * Human::makeMove(){
+  ConstructMoves * _moves = new ConstructMoves();
   std::string userInput;
   std::cout << "Enter move: ";
   std::cin >> userInput;
