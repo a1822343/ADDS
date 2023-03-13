@@ -1,2 +1,2 @@
-all: Rock.cpp Paper.cpp Scissors.cpp Monkey.cpp Robot.cpp Pirate.cpp Ninja.cpp Zombie.cpp main.cpp Computer.cpp Human.cpp Referee.cpp ConstructMoves.cpp
-	g++ -Wall Rock.cpp Paper.cpp Scissors.cpp Monkey.cpp Robot.cpp Pirate.cpp Ninja.cpp Zombie.cpp main.cpp Computer.cpp Human.cpp Referee.cpp ConstructMoves.cpp -o all
+all: *.cpp
+	g++ -Wall *.cpp -o all
