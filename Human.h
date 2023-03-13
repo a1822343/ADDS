@@ -6,12 +6,11 @@
 class Human: public Player {
  private:
   std::string name;
-  std::string move;
  public:
-  Human();
-  Human(std::string _name);
+  Human(); // constructs a human player with the name "Human"
+  Human(std::string _name); // constructs a human player with the name _name
   
-  std::string getName();
-  Move * makeMove();
+  std::string getName(); // returns name
+  Move * makeMove(); // returns the user's inputted move
 };
 #endif

@@ -1,12 +1,14 @@
 #ifndef MONKEY
 #define MONKEY
-#include "Move.h"
 #include <vector>
 
-class Monkey: public Move {
+#include "Move.h"
+
+class Monkey : public Move {
  private:
   std::string name;
   std::vector<std::string> winsAgainst;
+
  public:
   Monkey();
   std::string getName();
