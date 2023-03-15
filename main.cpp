@@ -1,13 +1,12 @@
-#include "Referee.h"
-#include "Computer.h"
-#include "Human.h"
-#include "Player.h"
+#include <iostream>
+#include "Truckloads.h"
+#include "Reverser.h"
 
 int main(void){
-    Referee ref;
-    Player* human = new Human;
-    Player* computer = new Computer;
-    Player* winner = ref.refGame(human, computer);
-    std::cout << winner->getName() << " Wins\n";
-    return 0;
+  Truckloads T;
+  Reverser R;
+
+  std::cout << R.reverseDigit(6542534) << std::endl;
+
+  return 0;
 }
