@@ -1,6 +1,9 @@
 #include "Reverser.h"
 
 int Reverser::reverseDigit(int value) {
+  if (value < 0){
+    return -1;
+  }
   std::string reversedVal = std::to_string(value);
   return stoi(reverseString(reversedVal));
 }
