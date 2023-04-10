@@ -15,10 +15,10 @@ int main(int argc, char* argv[]){
 
   list = ascOrder.sort(list);
 
-  std::cout << std::boolalpha << result.search(list, 1) << " ";
+  std::cout << std::boolalpha << result.search(list, 1);
   
   for (size_t i = 0; i < list.size(); i++){
-    std::cout << list[i] << " ";
+    std::cout << " " << list[i];
   }
 
   std::cout << std::endl;
