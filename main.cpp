@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 int main(int argc, char* argv[]){
   QuickSort ascOrder;
@@ -17,9 +18,11 @@ int main(int argc, char* argv[]){
   // }
 
   std::getline(std::cin, argument);
+  std::istringstream ss(argument);
 
-  for (size_t i = 0; i < argument.length(); i += 2){
-    list.push_back(argument[i] - 48);
+  int temp;
+  while (ss >> temp){
+    list.push_back(temp);
   }
 
   list = ascOrder.sort(list);
