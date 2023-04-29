@@ -32,11 +32,13 @@ void LinkedList::insertPosition(int pos, int newNum) {
 
 bool LinkedList::deletePosition(int pos) {
   if (pos > 1){
-    Node* currNode = traverse(pos);
-    if (currNode == nullptr){
+    Node* prevNode = traverse(pos - 1);
+    if (prevNode == nullptr || prevNode->getLink() == nullptr){
       return false;
     }
-    currNode = currNode->getLink();
+    Node* currNode = prevNode->getLink();
+    prevNode->setLink(currNode->getLink());
+    delete currNode;
     return true;
   } else if ( pos == 1){
     head = head->getLink();
