@@ -1,12 +1,13 @@
 #include "LinkedList.h"
 
 #include <iostream>
+#include <limits>
 
 LinkedList::LinkedList() { head = nullptr; }
 
 LinkedList::LinkedList(int* array, int len) { 
     head = nullptr;
-    for (size_t i = 0; i < len; i++){
+    for (int i = 0; i < len; i++){
       insertPosition(i, array[i]);
     }
 }
@@ -69,7 +70,7 @@ void LinkedList::printList() {
 }
 
 Node* LinkedList::traverse(int pos) {
-  unsigned int position = 0;
+  int position = 0;
   Node* currNode = head;
   while (currNode != nullptr && position < pos) {
     currNode = currNode->getLink();
