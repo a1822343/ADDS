@@ -56,7 +56,7 @@ int LinkedList::get(int pos) {
 }
 
 int LinkedList::search(int target) {
-  int pos = 0;
+  int pos = 1;
   Node* currNode = head;
   while (currNode->getLink() != nullptr) {
     if (currNode->getData() == target){
