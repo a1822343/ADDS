@@ -7,14 +7,14 @@ LinkedList::LinkedList() { head = nullptr; }
 
 LinkedList::LinkedList(int* array, int len) { 
     head = nullptr;
-    for (int i = 0; i < len; i++){
-      insertPosition(i, array[i]);
+    for (int i = 1; i < len + 1; i++){
+      insertPosition(i, array[i-1]);
     }
 }
 
 void LinkedList::insertPosition(int pos, int newNum) {
   // if adding in front of the current head (including if the list is empty)
-  if (pos == 0) {
+  if (pos <= 1) {
     head = new Node(newNum, head);
     return;
   }
@@ -70,7 +70,7 @@ void LinkedList::printList() {
 }
 
 Node* LinkedList::traverse(int pos) {
-  int position = 0;
+  int position = 1;
   Node* currNode = head;
   while (currNode != nullptr && position < pos) {
     currNode = currNode->getLink();
