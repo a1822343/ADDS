@@ -36,14 +36,10 @@ bool LinkedList::deletePosition(int pos) {
     if (currNode == nullptr){
       return false;
     }
-    Node* temp = currNode;
     currNode = currNode->getLink();
-    delete temp;
     return true;
   } else if ( pos == 1){
-    Node* temp = head;
     head = head->getLink();
-    delete temp;
     return true;
   }
   return false;
@@ -52,12 +48,9 @@ bool LinkedList::deletePosition(int pos) {
 int LinkedList::get(int pos) {
   Node* nodeAtPos = traverse(pos);
   if (nodeAtPos == nullptr) {
-    delete nodeAtPos;
     return std::numeric_limits<int>::max();
   }
-  int data = nodeAtPos->getData();
-  delete nodeAtPos;
-  return data;
+  return nodeAtPos->getData();
 }
 
 int LinkedList::search(int target) {
@@ -65,7 +58,6 @@ int LinkedList::search(int target) {
   Node* currNode = head;
   while (currNode->getLink() != nullptr) {
     if (currNode->getData() == target){
-      delete currNode;
       return pos;
     }
     currNode = currNode->getLink();
@@ -85,7 +77,6 @@ void LinkedList::printList() {
     }
     std::cout << "]" << std::endl;
   }
-  delete currNode;
 }
 
 Node* LinkedList::traverse(int pos) {
