@@ -83,6 +83,9 @@ void LinkedList::printList() {
 
 Node* LinkedList::traverse(int pos) {
   int position = 1;
+  if (position > pos){
+    return nullptr;
+  }
   Node* currNode = head;
   while (currNode != nullptr && position < pos) {
     currNode = currNode->getLink();
