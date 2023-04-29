@@ -33,7 +33,7 @@ bool LinkedList::deletePosition(int pos) {
   if (prevNode->getLink() == nullptr) {
     return false;
   }
-  prevNode->setLink(traverse(pos));
+  prevNode->setLink(traverse(pos)->getLink());
   return true;
 }
 
