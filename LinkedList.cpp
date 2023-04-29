@@ -19,22 +19,30 @@ void LinkedList::insertPosition(int pos, int newNum) {
     return;
   }
   // if inserting between two nodes; i.e. [A, C] -> [A, B, C]
-  Node* prevNode = traverse(pos - 1);
+  Node* prevNode = nullptr;
+  int i = 1;
   // if inserting out of bounds, abort
-  if (prevNode == nullptr) {
-    return;
+  while (prevNode == nullptr) {
+    prevNode = traverse(pos - i);
+    i++;
   }
   Node* newNode = new Node(newNum, prevNode->getLink());
   prevNode->setLink(newNode);
 }
 
 bool LinkedList::deletePosition(int pos) {
-  Node* prevNode = traverse(pos - 1);
-  if (prevNode->getLink() == nullptr) {
-    return false;
+  if (pos > 1){
+    Node* prevNode = traverse(pos - 1);
+    if (prevNode->getLink() == nullptr) {
+      return false;
+    }
+    prevNode->setLink(traverse(pos)->getLink());
+    return true;
+  } else if ( pos == 1){
+    head = head->getLink();
+    return true;
   }
-  prevNode->setLink(traverse(pos)->getLink());
-  return true;
+  return false;
 }
 
 int LinkedList::get(int pos) {
@@ -60,13 +68,15 @@ int LinkedList::search(int target) {
 
 void LinkedList::printList() {
   Node* currNode = head;
-  std::cout << "[" << currNode->getData();
-  currNode = currNode->getLink();
-  while (currNode != nullptr) {
-    std::cout << " " << currNode->getData();
+  if (currNode != nullptr){
+    std::cout << "[" << currNode->getData();
     currNode = currNode->getLink();
+    while (currNode != nullptr) {
+      std::cout << " " << currNode->getData();
+      currNode = currNode->getLink();
+    }
+    std::cout << "]" << std::endl;
   }
-  std::cout << "]" << std::endl;
 }
 
 Node* LinkedList::traverse(int pos) {
@@ -79,17 +89,11 @@ Node* LinkedList::traverse(int pos) {
   return currNode;
 }
 
-void LinkedList::deleteFromFront() {
-  if (head == nullptr) {
-    return;
-  }
-  Node* temp = head;
-  head = head->getLink();
-  delete temp;
-}
-
 LinkedList::~LinkedList() {
-  while (head != nullptr) {
-    deleteFromFront();
+  Node* currNode = head;
+  while (currNode != nullptr){
+    Node* temp = currNode->getLink();
+    currNode = currNode->getLink();
+    delete temp;
   }
 }

@@ -27,9 +27,6 @@ class LinkedList {
   Node* traverse(int pos);
 
   //destructor
-  
-  // delete all nodes
-  void deleteFromFront();
   ~LinkedList();
 };
 #endif
