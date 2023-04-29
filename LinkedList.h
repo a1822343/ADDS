@@ -6,6 +6,9 @@
 class LinkedList {
  private:
   Node* head;
+
+  // get and search exist, so not used outside of LinkedList 
+  Node* traverse(int pos);
  public:
   // constructors
   LinkedList();
@@ -22,9 +25,6 @@ class LinkedList {
   // search for first instance of Node->getData() == target and return pos, else return -1
   int search(int target);
   void printList();
-
-  // go to Node[pos]
-  Node* traverse(int pos);
 
   //destructor
   ~LinkedList();
