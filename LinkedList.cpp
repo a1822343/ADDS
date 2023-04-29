@@ -40,7 +40,7 @@ bool LinkedList::deletePosition(int pos) {
     prevNode->setLink(currNode->getLink());
     delete currNode;
     return true;
-  } else if ( pos == 1){
+  } else if (pos == 1){
     head = head->getLink();
     return true;
   }

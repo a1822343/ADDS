@@ -12,6 +12,4 @@ int Node::getData() { return data; }
 void Node::setLink(Node* _link) { link = _link; }
 Node* Node::getLink() { return link; }
 
-Node::~Node(){
-  delete link;
-}
+Node::~Node(){}
