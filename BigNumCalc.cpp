@@ -97,7 +97,6 @@ std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2){
 }
 
 std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
-  int borrowed = 0;
   int newEntry = 0;
 
   // list to return
@@ -145,13 +144,17 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   std::list<int>::reverse_iterator rit1 = greater.rbegin();
   std::list<int>::reverse_iterator rit2 = lesser.rbegin();
 
+  std::list<int>::reverse_iterator tempRit;
+
   while (rit1 != greater.rend() && rit2 != lesser.rend()){
-    *rit1 = *rit1 - borrowed;
     if (*rit2 > *rit1){
-      borrowed = 1;
       *rit1 += 10;
-    } else {
-      borrowed = 0;
+      tempRit = std::next(rit1);
+      while (*(tempRit) == 0){
+        *(tempRit) = 9;
+        tempRit = std::next(tempRit);
+      }
+      *tempRit = *tempRit - 1;
     }
 
     newEntry = *rit1 - *rit2;
@@ -220,7 +223,7 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2){
     // next position
     rit1++;
   }
-  if (carry != 0) {
+  if (carry != 0){
     prevResult.push_front(carry);
   }
 
