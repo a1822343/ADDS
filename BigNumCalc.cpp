@@ -97,6 +97,7 @@ std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2){
 }
 
 std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
+  // temp storage
   int newEntry = 0;
 
   // list to return
@@ -123,17 +124,22 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   } else if (num1.size() < num2.size()) {
     greater = num2;
     greater = num1;
-  // if at any point the units are not equal, the list with the greater unit value is awarded greater
   } else {
+    // need a second iterator to represent num2
     std::list<int>::iterator it2 = num2.begin();
+
+    // checking from greatest unit to smallest
     for (std::list<int>::iterator it1 = num1.begin(); it1 != num1.end(); it1++){
+      // if there is a discrepancy, the list with the greater value wins
       if (*it1 > *it2) {
         greater = num1;
         lesser = num2;
+        // leave for loop
         break;
       } else if (*it1 < *it2){
         greater = num2;
         lesser = num1;
+        // leave for loop
         break;
       }
       it2++;
@@ -144,25 +150,36 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   std::list<int>::reverse_iterator rit1 = greater.rbegin();
   std::list<int>::reverse_iterator rit2 = lesser.rbegin();
 
+  // so we don't affect the position of the original iterator
   std::list<int>::reverse_iterator tempRit;
 
   while (rit1 != greater.rend() && rit2 != lesser.rend()){
     if (*rit2 > *rit1){
+      // will need to borrow from the unit over
       *rit1 += 10;
+
       tempRit = std::next(rit1);
+
+      // in case we try to "borrow" from a 0
       while (*(tempRit) == 0){
         *(tempRit) = 9;
         tempRit = std::next(tempRit);
       }
+      // borrow from this unit
       *tempRit = *tempRit - 1;
     }
 
+    // perform the subtraction
     newEntry = *rit1 - *rit2;
 
+    // add to list in correct place
     subbedList.push_front(newEntry);
+
+    // next position
     rit1 = std::next(rit1);
     rit2 = std::next(rit2);
   }
+  // in case there are units left
   while (rit1 != greater.rend()){
     subbedList.push_front(*rit1);
     rit1 = std::next(rit1);
@@ -172,6 +189,8 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   while (*(subbedList.begin()) == 0 && subbedList.size() > 1){
     subbedList.pop_front();
   }
+
+  // finished
   return subbedList;
 }
 
@@ -207,6 +226,8 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2){
       // next position
       rit2++;
     }
+    // add carry unit (trailing zeroes doesn't matter)
+    num2.push_front(carry);
     // add new calc to result of all previous calcs
     prevResult = add(prevResult, num2);
 
@@ -220,11 +241,11 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2){
     temp = num2;
     // reset num2 reverse-iterator
     rit2 = num2.rbegin();
+
+    // reset carry
+    carry = 0;
     // next position
     rit1++;
-  }
-  if (carry != 0){
-    prevResult.push_front(carry);
   }
 
   // return calcs
