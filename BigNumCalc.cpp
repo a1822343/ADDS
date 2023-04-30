@@ -10,7 +10,7 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString){
   std::list<int> numList;
 
   // for the length of numString
-  for (int i = 0; i < numString.size(); i++){
+  for (size_t i = 0; i < numString.size(); i++){
     // get char as int, subtract ASCII value of 0 to account for offset
     numList.push_back(numString[i] - '0');
   }
