@@ -16,9 +16,9 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString){
   }
 
   // get rid of trailing 0s
-  while (*(numList.begin()) == 0 && numList.size() > 1){
-    numList.pop_front();
-  }
+  // while (*(numList.begin()) == 0 && numList.size() > 1){
+  //   numList.pop_front();
+  // }
 
   // finished
   return numList;
