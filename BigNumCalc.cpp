@@ -103,10 +103,6 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   // list to return
   std::list<int> subbedList;
 
-  // temp storage lists
-  std::list<int> greater;
-  std::list<int> lesser;
-
   // get rid of trailing 0s
   // otherwise list.size() is misleading
   while (*(num1.begin()) == 0 && num1.size() > 1){
@@ -115,6 +111,10 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
   while (*(num2.begin()) == 0 && num2.size() > 1){
     num2.pop_front();
   }
+
+  // temp storage lists
+  std::list<int> greater = num1;
+  std::list<int> lesser = num2;
 
   // determine which list has a greater value
   // use number of units first
