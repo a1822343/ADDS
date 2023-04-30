@@ -16,9 +16,9 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString){
   }
 
   // get rid of trailing 0s
-  // while (*(numList.begin()) == 0 && numList.size() > 1){
-  //   numList.pop_front();
-  // }
+  while (*(numList.begin()) == 0 && numList.size() > 1){
+    numList.pop_front();
+  }
 
   // finished
   return numList;
@@ -219,6 +219,9 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2){
     rit2 = num2.rbegin();
     // next position
     rit1++;
+  }
+  if (carry != 0) {
+    prevResult.push_front(carry);
   }
 
   // return calcs
