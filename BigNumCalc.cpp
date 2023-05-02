@@ -16,9 +16,7 @@ std::list<int> BigNumCalc::buildBigNum(std::string numString){
   }
 
   // get rid of trailing 0s
-  while (*(numList.begin()) == 0 && numList.size() > 1){
-    numList.pop_front();
-  }
+  numList = deleteTrailing(numList);
 
   // finished
   return numList;
@@ -88,9 +86,7 @@ std::list<int> BigNumCalc::add(std::list<int> num1, std::list<int> num2){
   }
 
   // get rid of trailing 0s
-  while (*(addedLists.begin()) == 0 && addedLists.size() > 1){
-    addedLists.pop_front();
-  }
+  addedLists = deleteTrailing(addedLists);
 
   // finished
   return addedLists;
@@ -105,12 +101,8 @@ std::list<int> BigNumCalc::sub(std::list<int> num1, std::list<int> num2){
 
   // get rid of trailing 0s
   // otherwise list.size() is misleading
-  while (*(num1.begin()) == 0 && num1.size() > 1){
-    num1.pop_front();
-  }
-  while (*(num2.begin()) == 0 && num2.size() > 1){
-    num2.pop_front();
-  }
+  num1 = deleteTrailing(num1);
+  num2 = deleteTrailing(num2);
 
   // temp storage lists
   std::list<int> greater = num1;
@@ -250,6 +242,13 @@ std::list<int> BigNumCalc::mul(std::list<int> num1, std::list<int> num2){
 
   // return calcs
   return prevResult;
+}
+
+std::list<int> BigNumCalc::deleteTrailing(std::list<int> list){
+    while (*(list.begin()) == 0 && list.size() > 1){
+    list.pop_front();
+  }
+  return list;
 }
 
 BigNumCalc::~BigNumCalc() {}

@@ -5,6 +5,8 @@
 #include <string>
 
 class BigNumCalc {
+ private:
+  std::list<int> deleteTrailing(std::list<int> list);
  public:
   BigNumCalc();
   std::list<int> buildBigNum(std::string numString);
