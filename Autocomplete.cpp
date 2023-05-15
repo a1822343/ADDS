@@ -34,12 +34,6 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   return returnVector;
 }  // return the known words that start with partialWord
 
-std::vector<std::string> findWord(std::vector<TrieNode*> tree){
-  for (size_t i = 0; i < tree.size(); i++){
-    
-  }
-}
-
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
   TrieNode* node = new TrieNode{NULL, false, empty};
