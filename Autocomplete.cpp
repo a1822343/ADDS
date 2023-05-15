@@ -6,31 +6,23 @@ Autocomplete::Autocomplete(){
   currLevel = &knownWords;
 }
 
-/*std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
+std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   std::vector<std::string> returnVector;
   for (size_t i = 0; i < partialWord.length(); i++){
-    bool inTree = false;
     for (size_t j = 0; j < currLevel->size(); j++){
       if (partialWord[i] == currLevel->at(j)->key){
-        inTree = true;
         currLevel = &currLevel->at(j)->children;
-        if (i != partialWord.length() - 1){
-          break;
-        }
+        break;
       }
     }
-    if (!inTree){
-      currLevel = &knownWords;
-      return returnVector;
-    }
   }
-
   return returnVector;
-}  // return the known words that start with partialWord */
+}  // return the known words that start with partialWord
 
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
-  TrieNode* node = new TrieNode{'0', false, empty};
+  std::cout << empty.empty() << std::endl;
+  TrieNode* node = new TrieNode{NULL, false, empty};
   bool end = false;
 
   if (knownWords.empty()){
@@ -42,6 +34,7 @@ void Autocomplete::insert(std::string word) {
   }
 
   for (size_t i = 0; i < word.length(); i++){
+    //std::cout << word.substr(i+1) << std::endl;
     if (i == word.length() - 1){
       end = true;
     }
@@ -71,5 +64,6 @@ void Autocomplete::insert(std::string word) {
       currLevel = &knownWords;
       return;
     }
+
   }
 }  // add a word to the known words
