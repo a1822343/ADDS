@@ -25,12 +25,6 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
     }
   }
 
-  while (!currLevel->empty()){
-    for (size_t i = 0; i < currLevel->size(); i++){
-      
-    }
-  }
-
   return returnVector;
 }  // return the known words that start with partialWord
 
@@ -78,6 +72,5 @@ void Autocomplete::insert(std::string word) {
       currLevel = &knownWords;
       return;
     }
-
   }
 }  // add a word to the known words
