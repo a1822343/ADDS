@@ -30,7 +30,7 @@ Autocomplete::Autocomplete(){
 
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
-  TrieNode* node = new TrieNode{NULL, false, empty};
+  TrieNode* node = new TrieNode{'0', false, empty};
   bool end = false;
 
   if (knownWords.empty()){
@@ -42,7 +42,6 @@ void Autocomplete::insert(std::string word) {
   }
 
   for (size_t i = 0; i < word.length(); i++){
-    //std::cout << word.substr(i+1) << std::endl;
     if (i == word.length() - 1){
       end = true;
     }
