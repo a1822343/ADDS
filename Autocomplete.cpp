@@ -6,7 +6,7 @@ Autocomplete::Autocomplete(){
   currLevel = &knownWords;
 }
 
-std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
+/*std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   std::vector<std::string> returnVector;
   for (size_t i = 0; i < partialWord.length(); i++){
     bool inTree = false;
@@ -26,7 +26,7 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   }
 
   return returnVector;
-}  // return the known words that start with partialWord
+}  // return the known words that start with partialWord */
 
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
