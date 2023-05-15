@@ -8,7 +8,6 @@ Autocomplete::Autocomplete(){
 
 std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   std::vector<std::string> returnVector;
-  int startingIndex = 0;
   for (size_t i = 0; i < partialWord.length(); i++){
     bool inTree = false;
     for (size_t j = 0; j < currLevel->size(); j++){
@@ -18,7 +17,6 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
         if (i != partialWord.length() - 1){
           break;
         }
-        startingIndex = j + 1;
       }
     }
     if (!inTree){
@@ -28,11 +26,19 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   }
 
   while (!currLevel->empty()){
-    
+    for (size_t i = 0; i < currLevel->size(); i++){
+      
+    }
   }
 
   return returnVector;
 }  // return the known words that start with partialWord
+
+std::vector<std::string> findWord(std::vector<TrieNode*> tree){
+  for (size_t i = 0; i < tree.size(); i++){
+    
+  }
+}
 
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
