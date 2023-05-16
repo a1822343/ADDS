@@ -4,8 +4,6 @@ PrefixMatcher::PrefixMatcher() { currLevel = &knownRouters; }
 
 int PrefixMatcher::selectRouter(std::string networkAddress) {
   int returnRouter = 0;
-  //int max = 0;
-  //bool inTree = false;
   for (size_t i = 0; i < networkAddress.length(); i++) {
     for (size_t j = 0; j < currLevel->size(); j++) {
       if (networkAddress[i] == currLevel->at(j)->key) {
@@ -14,27 +12,30 @@ int PrefixMatcher::selectRouter(std::string networkAddress) {
       }
     }
   }
+
+  returnRouter = traverse(currLevel, 0, INT_MAX);
+  
   currLevel = &knownRouters;
   return returnRouter;
 }  // return the router with the longest matching prefix
 
-// int PrefixMatcher::traverse(std::vector<TrieNode*> *tree, int currLength, int max){
-//   std::vector<TrieNode *> *subTree;
-//   int returnRouter = tree->front()->routerNumber;
-//   for (size_t i = 0; i < tree->size(); i++) {
-//     if (tree->at(i)->isEndOf) {
-//       if (currLength > max){
-//         max = currLength;
-//         returnRouter = tree->at(i)->routerNumber;
-//       }
-//     } else {
-//       subTree = &tree->at(i)->children;
-//       currLength++;
-//       traverse(subTree, currLength, max);
-//     }
-//   }
-//   return returnRouter;
-// }
+int PrefixMatcher::traverse(std::vector<TrieNode*> *tree, int currLength, int min){
+  std::vector<TrieNode *> *subTree;
+  int returnRouter = tree->front()->routerNumber;
+  for (size_t i = 0; i < tree->size(); i++) {
+    if (tree->at(i)->isEndOf) {
+      if (currLength < min){
+        min = currLength;
+        returnRouter = tree->at(i)->routerNumber;
+      }
+    } else {
+      subTree = &tree->at(i)->children;
+      currLength++;
+      traverse(subTree, currLength, min);
+    }
+  }
+  return returnRouter;
+}
 
 void PrefixMatcher::insert(std::string address, int routerNumber) {
   // use Autocomplete::insert with an unordered_map
