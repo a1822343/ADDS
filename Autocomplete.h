@@ -2,13 +2,7 @@
 #define AUTOCOMPLETE_H
 
 #include <string>
-#include <vector>
-
-struct TrieNode {
-  char key;
-  bool isEndOfWord;
-  std::vector<TrieNode* > children;
-};
+#include "TrieNode.h"
 
 class Autocomplete {
  private:

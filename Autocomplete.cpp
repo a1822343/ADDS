@@ -1,7 +1,5 @@
 #include "Autocomplete.h"
 
-#include <iostream>
-
 Autocomplete::Autocomplete() { currLevel = &knownWords; }
 
 std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord) {
@@ -36,7 +34,7 @@ void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector,
   for (size_t i = 0; i < tree->size(); i++) {
     currWord = word;
     currWord.push_back(tree->at(i)->key);
-    if (tree->at(i)->isEndOfWord) {
+    if (tree->at(i)->isEndOf) {
       returnVector->push_back(currWord);
     }
     if (tree->size() > 0) {
@@ -52,7 +50,7 @@ void Autocomplete::insert(std::string word) {
 
   if (knownWords.empty()) {
     if (word.size() == 1) {
-      node->isEndOfWord = true;
+      node->isEndOf = true;
     }
     node->key = word[0];
     knownWords.push_back(node);
@@ -70,7 +68,7 @@ void Autocomplete::insert(std::string word) {
           currLevel = &knownWords;
           return;
         } else {
-          currLevel->at(j)->isEndOfWord = true;
+          currLevel->at(j)->isEndOf = true;
           currLevel = &knownWords;
           return;
         }
@@ -78,7 +76,7 @@ void Autocomplete::insert(std::string word) {
     }
 
     node->key = word[i];
-    node->isEndOfWord = end;
+    node->isEndOf = end;
     currLevel->push_back(node);
     if (!end) {
       currLevel = &currLevel->back()->children;

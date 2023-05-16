@@ -1,8 +1,5 @@
 #include "PrefixMatcher.h"
 
-#include <iostream>
-#include <vector>
-
 PrefixMatcher::PrefixMatcher() { currLevel = &knownRouters; }
 
 int PrefixMatcher::selectRouter(std::string networkAddress) {
@@ -33,7 +30,7 @@ int PrefixMatcher::traverse(std::vector<TrieNode*> *tree, int currLength, int ma
   std::vector<TrieNode *> *subTree;
   int returnRouter = tree->front()->routerNumber;
   for (size_t i = 0; i < tree->size(); i++) {
-    if (tree->at(i)->isEndOfAddress) {
+    if (tree->at(i)->isEndOf) {
       if (currLength > max){
         max = currLength;
         returnRouter = tree->at(i)->routerNumber;
@@ -54,7 +51,7 @@ void PrefixMatcher::insert(std::string address, int routerNumber) {
 
   if (knownRouters.empty()) {
     if (address.size() == 1) {
-      node->isEndOfAddress = true;
+      node->isEndOf = true;
     }
     node->key = address[0];
     node->routerNumber = routerNumber;
@@ -72,7 +69,7 @@ void PrefixMatcher::insert(std::string address, int routerNumber) {
           currLevel = &knownRouters;
           return;
         } else {
-          currLevel->at(j)->isEndOfAddress = true;
+          currLevel->at(j)->isEndOf = true;
           currLevel = &knownRouters;
           return;
         }
@@ -80,7 +77,7 @@ void PrefixMatcher::insert(std::string address, int routerNumber) {
     }
 
     node->key = address[i];
-    node->isEndOfAddress = end;
+    node->isEndOf = end;
     node->routerNumber = routerNumber;
     currLevel->push_back(node);
     if (!end) {

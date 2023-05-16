@@ -3,13 +3,7 @@
 
 #include <string>
 #include <vector>
-
-struct TrieNode {
-  char key;
-  bool isEndOfAddress;
-  int routerNumber;
-  std::vector<TrieNode*> children;
-};
+#include "TrieNode.h"
 
 class PrefixMatcher {
  public: 
