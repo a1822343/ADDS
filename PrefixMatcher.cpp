@@ -13,16 +13,13 @@ int PrefixMatcher::selectRouter(std::string networkAddress) {
         currLevel = &currLevel->at(j)->children;
         inTree = true;
         break;
-      } else {
-        inTree = false;
-      }
-    }
-    if (!inTree){
-      break;
+      } else { inTree = false; }
     }
   }
 
-  returnRouter = traverse(currLevel, 0, INT_MAX);
+  if (!inTree){
+    returnRouter = traverse(currLevel, 0, INT_MAX);
+  }
 
   currLevel = &knownRouters;
   return returnRouter;
