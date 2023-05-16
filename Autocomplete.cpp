@@ -2,18 +2,14 @@
 
 #include <iostream>
 
-Autocomplete::Autocomplete(){
-  currLevel = &knownWords;
-}
+Autocomplete::Autocomplete() { currLevel = &knownWords; }
 
-std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
+std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord) {
   std::vector<std::string> returnVector;
   bool inTree = false;
-  for (size_t i = 0; i < partialWord.length(); i++){
-    for (size_t j = 0; j < currLevel->size(); j++){
-
-      
-      if (partialWord[i] == currLevel->at(j)->key){
+  for (size_t i = 0; i < partialWord.length(); i++) {
+    for (size_t j = 0; j < currLevel->size(); j++) {
+      if (partialWord[i] == currLevel->at(j)->key) {
         currLevel = &currLevel->at(j)->children;
         inTree = true;
         break;
@@ -21,7 +17,7 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
         inTree = false;
       }
     }
-    if (!inTree){
+    if (!inTree) {
       return returnVector;
     }
   }
@@ -30,18 +26,20 @@ std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   return returnVector;
 }  // return the known words that start with partialWord
 
-void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector, std::vector<TrieNode*> *tree, std::string word){
+void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector,
+                                     std::vector<TrieNode *> *tree,
+                                     std::string word) {
   std::string currWord;
-  std::vector<TrieNode*> *subTree;
+  std::vector<TrieNode *> *subTree;
   std::vector<std::string> subVector;
 
-  for (size_t i = 0; i < tree->size(); i++){
+  for (size_t i = 0; i < tree->size(); i++) {
     currWord = word;
     currWord.push_back(tree->at(i)->key);
-    if (tree->at(i)->isEndOfWord){
+    if (tree->at(i)->isEndOfWord) {
       returnVector->push_back(currWord);
     }
-    if (tree->size() > 0){
+    if (tree->size() > 0) {
       subTree = &tree->at(i)->children;
       returnAllBranches(returnVector, subTree, currWord);
     }
@@ -49,35 +47,33 @@ void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector, std
 }
 
 void Autocomplete::insert(std::string word) {
-  std::vector<TrieNode*> empty;
-  TrieNode* node = new TrieNode{'\0', false, empty};
+  std::vector<TrieNode *> empty;
+  TrieNode *node = new TrieNode{'\0', false, empty};
   bool end = false;
 
-  if (knownWords.empty()){
-    if (word.size() == 1){
+  if (knownWords.empty()) {
+    if (word.size() == 1) {
       node->isEndOfWord = true;
     }
     node->key = word[0];
     knownWords.push_back(node);
   }
 
-  for (size_t i = 0; i < word.length(); i++){
-    if (i == word.length() - 1){
+  for (size_t i = 0; i < word.length(); i++) {
+    if (i == word.length() - 1) {
       end = true;
     }
-    if (!currLevel->empty()){
-      for (size_t j = 0; j < currLevel->size(); j++){
-        if (word[i] == currLevel->at(j)->key){
-          if (!end){
-            currLevel = &currLevel->at(j)->children;
-            insert(word.substr(i+1));
-            currLevel = &knownWords;
-            return;
-          } else {
-            currLevel->at(j)->isEndOfWord = true;
-            currLevel = &knownWords;
-            return;
-          }
+    for (size_t j = 0; j < currLevel->size(); j++) {
+      if (word[i] == currLevel->at(j)->key) {
+        if (!end) {
+          currLevel = &currLevel->at(j)->children;
+          insert(word.substr(i + 1));
+          currLevel = &knownWords;
+          return;
+        } else {
+          currLevel->at(j)->isEndOfWord = true;
+          currLevel = &knownWords;
+          return;
         }
       }
     }
@@ -85,12 +81,11 @@ void Autocomplete::insert(std::string word) {
     node->key = word[i];
     node->isEndOfWord = end;
     currLevel->push_back(node);
-    if (!end){
+    if (!end) {
       currLevel = &currLevel->back()->children;
-      insert(word.substr(i+1));
+      insert(word.substr(i + 1));
       currLevel = &knownWords;
       return;
     }
-
   }
 }  // add a word to the known words
