@@ -47,8 +47,7 @@ void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector,
 }
 
 void Autocomplete::insert(std::string word) {
-  std::vector<TrieNode *> empty;
-  TrieNode *node = new TrieNode{'\0', false, empty};
+  TrieNode *node = new TrieNode{'\0', false};
   bool end = false;
 
   if (knownWords.empty()) {

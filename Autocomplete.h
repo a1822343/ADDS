@@ -11,10 +11,10 @@ struct TrieNode {
 };
 
 class Autocomplete {
- public:
+ private:
   std::vector<TrieNode*> knownWords;
   std::vector<TrieNode*> *currLevel;
-
+ public:
   Autocomplete();
 
   void returnAllBranches(std::vector<std::string> *returnVector, std::vector<TrieNode*> *tree, std::string partialWord);

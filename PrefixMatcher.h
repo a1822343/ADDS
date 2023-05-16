@@ -2,18 +2,23 @@
 #define PREFIXMATCHER_H
 
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 struct TrieNode {
   char key;
   bool isEndOfAddress;
-  std::unordered_map<int, TrieNode*> children;
+  int routerNumber;
+  std::vector<TrieNode*> children;
 };
 
 class PrefixMatcher {
  public: 
-  std::unordered_map<int, TrieNode*> knownRouters;
-  std::unordered_map<int, TrieNode*> *currLevel;
+  std::vector<TrieNode*> knownRouters;
+  std::vector<TrieNode*> *currLevel;
+
+  PrefixMatcher();
+
+  int traverse(std::vector<TrieNode*> *tree, int currLength, int max);
   int selectRouter(std::string networkAddress);
   void insert(std::string address, int routerNumber);
 };
