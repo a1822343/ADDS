@@ -5,12 +5,20 @@ PrefixMatcher::PrefixMatcher() { currLevel = &knownRouters; }
 
 int PrefixMatcher::selectRouter(std::string networkAddress) {
   int returnRouter = 0;
+  bool inTree = false;
   for (size_t i = 0; i < networkAddress.length(); i++) {
     for (size_t j = 0; j < currLevel->size(); j++) {
       if (networkAddress[i] == currLevel->at(j)->key) {
         returnRouter = currLevel->at(j)->routerNumber;
         currLevel = &currLevel->at(j)->children;
+        inTree = true;
+        break;
+      } else {
+        inTree = false;
       }
+    }
+    if (!inTree){
+      break;
     }
   }
 
