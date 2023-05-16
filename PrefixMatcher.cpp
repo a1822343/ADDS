@@ -1,4 +1,5 @@
 #include "PrefixMatcher.h"
+#include <climits>
 
 PrefixMatcher::PrefixMatcher() { currLevel = &knownRouters; }
 
@@ -14,7 +15,7 @@ int PrefixMatcher::selectRouter(std::string networkAddress) {
   }
 
   returnRouter = traverse(currLevel, 0, INT_MAX);
-  
+
   currLevel = &knownRouters;
   return returnRouter;
 }  // return the router with the longest matching prefix
