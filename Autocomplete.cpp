@@ -8,21 +8,49 @@ Autocomplete::Autocomplete(){
 
 std::vector<std::string> Autocomplete::getSuggestions(std::string partialWord){
   std::vector<std::string> returnVector;
+  bool inTree = false;
   for (size_t i = 0; i < partialWord.length(); i++){
     for (size_t j = 0; j < currLevel->size(); j++){
+
+      
       if (partialWord[i] == currLevel->at(j)->key){
         currLevel = &currLevel->at(j)->children;
+        inTree = true;
         break;
+      } else {
+        inTree = false;
       }
     }
+    if (!inTree){
+      return returnVector;
+    }
   }
+  returnAllBranches(&returnVector, currLevel, partialWord);
+
   return returnVector;
 }  // return the known words that start with partialWord
 
+void Autocomplete::returnAllBranches(std::vector<std::string> *returnVector, std::vector<TrieNode*> *tree, std::string word){
+  std::string currWord;
+  std::vector<TrieNode*> *subTree;
+  std::vector<std::string> subVector;
+
+  for (size_t i = 0; i < tree->size(); i++){
+    currWord = word;
+    currWord.push_back(tree->at(i)->key);
+    if (tree->at(i)->isEndOfWord){
+      returnVector->push_back(currWord);
+    }
+    if (tree->size() > 0){
+      subTree = &tree->at(i)->children;
+      returnAllBranches(returnVector, subTree, currWord);
+    }
+  }
+}
+
 void Autocomplete::insert(std::string word) {
   std::vector<TrieNode*> empty;
-  std::cout << empty.empty() << std::endl;
-  TrieNode* node = new TrieNode{NULL, false, empty};
+  TrieNode* node = new TrieNode{'\0', false, empty};
   bool end = false;
 
   if (knownWords.empty()){
@@ -34,7 +62,6 @@ void Autocomplete::insert(std::string word) {
   }
 
   for (size_t i = 0; i < word.length(); i++){
-    //std::cout << word.substr(i+1) << std::endl;
     if (i == word.length() - 1){
       end = true;
     }
