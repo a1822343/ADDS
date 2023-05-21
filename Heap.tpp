@@ -2,7 +2,8 @@
 #define HEAP_H
 
 #include <vector>
-#include <cmath> // for floor()
+#include <cmath> // for floor() // cpp automatically rounds down ints so floor is purely visual
+#include <iostream>
 
 template <typename T>
 class Heap {
@@ -48,6 +49,11 @@ Heap<T>::Heap(std::vector<T> start_values) {
        parent_index--) {
     heapify(parent_index);
   }
+
+  for (int i = 0; i < values.size(); i++){
+    std::cout << values.at(i) << " ";
+  }
+  std::cout << std::endl;
 }
 
 /*******************************/
@@ -57,14 +63,6 @@ Heap<T>::Heap(std::vector<T> start_values) {
 template <typename T>
 void Heap<T>::insert(T value) {
    // TO BE IMPLEMENTED
-   values.push_back(value);
-   // starting from last non-leaf node (last parent), heapify each
-  // of the parents
-  int initial_parent_index = floor((values.size()-1) / 2);
-  for (int parent_index = initial_parent_index; parent_index >= 0;
-       parent_index--) {
-    heapify(parent_index);
-  }
 }
 
 /*******************************/
