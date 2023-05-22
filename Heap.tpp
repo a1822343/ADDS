@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <cmath> // for floor() // cpp automatically rounds down ints so floor is purely visual
-#include <iostream>
 
 template <typename T>
 class Heap {
@@ -100,7 +99,7 @@ void Heap<T>::remove(T value) {
 template <typename T>
 T Heap<T>::getMin() {
   // TO BE IMPLEMENTED
-  int currMin = INT_MAX;
+  T currMin = values.at(0);
   for (int i = 0; i < values.size(); i++){
     if (currMin > values.at(i)){
       currMin = values.at(i);
