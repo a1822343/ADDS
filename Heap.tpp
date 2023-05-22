@@ -49,11 +49,10 @@ Heap<T>::Heap(std::vector<T> start_values) {
        parent_index--) {
     heapify(parent_index);
   }
-
-  for (int i = 0; i < values.size(); i++){
-    std::cout << values.at(i) << " ";
-  }
-  std::cout << std::endl;
+  // for (int i = 0; i < values.size(); i++) {
+  //   std::cout << values.at(i) << " ";
+  // }
+  // std::cout << std::endl;
 }
 
 /*******************************/
@@ -63,6 +62,17 @@ Heap<T>::Heap(std::vector<T> start_values) {
 template <typename T>
 void Heap<T>::insert(T value) {
    // TO BE IMPLEMENTED
+   values.push_back(value);
+
+   int initial_parent_index = floor((values.size()-1) / 2);
+  for (int parent_index = initial_parent_index; parent_index >= 0;
+       parent_index--) {
+    heapify(parent_index);
+  }
+  // for (int i = 0; i < values.size(); i++){
+  //   std::cout << values.at(i) << " ";
+  // }
+  // std::cout << std::endl;
 }
 
 /*******************************/
@@ -72,6 +82,15 @@ void Heap<T>::insert(T value) {
 template <typename T>
 void Heap<T>::remove(T value) {
   // TO BE IMPLEMENTED
+  for (int i = 0; i < values.size(); i++){
+    if (value == values.at(i)){
+      values.erase(values.begin() + i);
+    }
+  }
+  // for (int i = 0; i < values.size(); i++){
+  //   std::cout << values.at(i) << " ";
+  // }
+  // std::cout << std::endl;
 }
 
 /*******************************/
@@ -81,6 +100,13 @@ void Heap<T>::remove(T value) {
 template <typename T>
 T Heap<T>::getMin() {
   // TO BE IMPLEMENTED
+  int currMin = INT_MAX;
+  for (int i = 0; i < values.size(); i++){
+    if (currMin > values.at(i)){
+      currMin = values.at(i);
+    }
+  }
+  return currMin;
 }
 
 /*******************************/
